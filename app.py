@@ -232,7 +232,9 @@ if st.button("✅ Evaluar Crédito"):
     )
 
 st.progress(int(prob))
-    st.info(
+   
+
+st.info(
         f"Cuota estimada: ${cuota:,.0f}"
     )
 
