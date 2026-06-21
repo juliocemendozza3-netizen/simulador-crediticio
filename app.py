@@ -223,34 +223,25 @@ if st.button("✅ Evaluar Crédito"):
     st.markdown("---")
     st.subheader("📊 Resultado de la Evaluación")
 
-    st.success(
-        f"Probabilidad ML: {prob}%"
+        st.success(
+        f"Probabilidad de aprobación: {prob}%"
     )
 
-    st.success(
-    f"Probabilidad de aprobación: {prob}%"
-    )
-
-   
-st.info(
+    st.info(
         f"Cuota estimada: ${cuota:,.0f}"
     )
 
-    
-st.info(
+    st.info(
         f"Capacidad de pago: {capacidad_pago:.2f}%"
     )
 
-    
-st.warning(
+    st.warning(
         f"Semáforo financiero: {semaforo}"
     )
 
-    
-st.markdown(f"## {decision_final}")
+    st.markdown(f"## {decision_final}")
 
-    
-st.write(f"**Motivo:** {motivo}")
+    st.write(f"**Motivo:** {motivo}")
 
 st.markdown("---")
 
