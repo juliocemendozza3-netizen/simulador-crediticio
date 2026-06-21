@@ -1,4 +1,4 @@
-import streamlit as st
+zimport streamlit as st
 import pandas as pd
 import joblib
 
@@ -241,7 +241,6 @@ if st.button("✅ Evaluar Crédito"):
 
     st.markdown(f"## {decision_final}")
 
-st.write(f"**Motivo principal:** {motivo}")
 st.markdown("---")
 
 if st.button("🔄 Nueva Consulta"):
@@ -251,7 +250,6 @@ if st.button("🔄 Nueva Consulta"):
 # EXPLICACIÓN DETALLADA
 # =========================
 
-st.markdown("### 📋 Análisis de la Decisión")
 
 explicacion = []
 
