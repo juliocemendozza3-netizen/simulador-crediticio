@@ -238,7 +238,8 @@ st.info(
         f"Cuota estimada: ${cuota:,.0f}"
     )
 
-    st.info(
+    
+st.info(
         f"Capacidad de pago: {capacidad_pago:.2f}%"
     )
 
