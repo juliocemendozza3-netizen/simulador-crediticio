@@ -243,7 +243,8 @@ st.info(
         f"Capacidad de pago: {capacidad_pago:.2f}%"
     )
 
-    st.warning(
+    
+st.warning(
         f"Semáforo financiero: {semaforo}"
     )
 
