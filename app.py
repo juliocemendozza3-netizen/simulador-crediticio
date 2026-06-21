@@ -15,26 +15,35 @@ scaler = joblib.load("scaler_creditos.pkl")
 
 st.title("🏦 Simulador Crediticio Inteligente")
 
-st.markdown("### Información del Cliente")
+st.write(
+    "Evaluación basada en Machine Learning, score crediticio y capacidad de pago."
+)
+
+# =========================
+# DATOS CLIENTE
+# =========================
+
+st.subheader("👤 Información del Cliente")
 
 edad = st.number_input(
     "Edad",
     min_value=18,
     max_value=100,
-    value=30
+    value=18
 )
 
 ingresos = st.number_input(
     "Ingresos Mensuales ($)",
     min_value=0,
-    value=5000000
+    value=0,
+    step=100000
 )
 
 score = st.number_input(
     "Score Crediticio",
     min_value=300,
     max_value=850,
-    value=650
+    value=300
 )
 
 prestamos = st.number_input(
@@ -46,10 +55,14 @@ prestamos = st.number_input(
 antiguedad = st.number_input(
     "Antigüedad Laboral (años)",
     min_value=0,
-    value=5
+    value=0
 )
 
-st.markdown("### Información Adicional")
+# =========================
+# INFORMACIÓN ADICIONAL
+# =========================
+
+st.subheader("📋 Información Adicional")
 
 tipo_contrato = st.selectbox(
     "Tipo de Contrato",
@@ -76,12 +89,16 @@ estado_civil = st.selectbox(
     ["Casado", "Soltero", "Union Libre"]
 )
 
-st.markdown("### Información del Crédito")
+# =========================
+# DATOS CRÉDITO
+# =========================
+
+st.subheader("💰 Información del Crédito")
 
 valor_credito = st.number_input(
     "Valor Solicitado ($)",
     min_value=1000000,
-    value=10000000,
+    value=1000000,
     step=1000000
 )
 
@@ -89,18 +106,20 @@ plazo = st.number_input(
     "Plazo (Meses)",
     min_value=6,
     max_value=120,
-    value=60
+    value=12
 )
 
 # =========================
-# BOTÓN EVALUAR
+# EVALUACIÓN
 # =========================
 
-if st.button("Evaluar Crédito"):
+if st.button("✅ Evaluar Crédito"):
 
-    # ---------------------
-    # VARIABLES DUMMY
-    # ---------------------
+    if ingresos <= 0:
+        st.error("Debe ingresar ingresos mayores a cero.")
+        st.stop()
+
+    # Variables dummy
 
     tipo_independiente = 1 if tipo_contrato == "Independiente" else 0
     tipo_temporal = 1 if tipo_contrato == "Temporal" else 0
@@ -116,10 +135,6 @@ if st.button("Evaluar Crédito"):
 
     civil_soltero = 1 if estado_civil == "Soltero" else 0
     civil_union = 1 if estado_civil == "Union Libre" else 0
-
-    # ---------------------
-    # DATAFRAME CLIENTE
-    # ---------------------
 
     cliente = pd.DataFrame({
         "Edad": [edad],
@@ -144,111 +159,86 @@ if st.button("Evaluar Crédito"):
         "Estado_Civil_Union Libre": [civil_union]
     })
 
-    # ---------------------
-    # MACHINE LEARNING
-    # ---------------------
+    # Modelo ML
 
     cliente_scaled = scaler.transform(cliente)
-
-    prediccion = modelo.predict(cliente_scaled)
 
     probabilidad = modelo.predict_proba(cliente_scaled)
 
     prob = round(probabilidad[0][1] * 100, 2)
 
-    # ---------------------
-    # CAPACIDAD DE PAGO
-    # ---------------------
+    # Capacidad de pago
 
     tasa = 0.015
 
     cuota = (
-        valor_credito *
-        (tasa * (1 + tasa) ** plazo)
-        /
-        (((1 + tasa) ** plazo) - 1)
+        valor_credito
+        * (tasa * (1 + tasa) ** plazo)
+        / (((1 + tasa) ** plazo) - 1)
     )
 
     capacidad_pago = (cuota / ingresos) * 100
 
-    # ---------------------
-    # SEMÁFORO
-    # ---------------------
+    # Semáforo
 
     if capacidad_pago < 35:
         semaforo = "🟢 VIABLE"
-
     elif capacidad_pago <= 45:
         semaforo = "🟡 REVISAR"
-
     else:
         semaforo = "🔴 NO VIABLE"
 
-    # ---------------------
-# REGLAS DE NEGOCIO
-# ---------------------
+    # Decisión final
 
-motivo = ""
+    if score < 500:
+        decision_final = "🔴 RECHAZADO"
+        motivo = "Score crediticio inferior a 500"
 
-if score < 500:
+    elif capacidad_pago > 45:
+        decision_final = "🔴 RECHAZADO"
+        motivo = "Capacidad de pago insuficiente"
 
-    decision_final = "🔴 RECHAZADO"
-    motivo = "Score crediticio inferior a 500"
+    elif score < 550:
+        decision_final = "🟡 REVISIÓN MANUAL"
+        motivo = "Score crediticio intermedio"
 
-elif capacidad_pago > 45:
+    elif prob >= 70:
+        decision_final = "🟢 APROBADO"
+        motivo = "Cumple criterios de riesgo y capacidad de pago"
 
-    decision_final = "🔴 RECHAZADO"
-    motivo = "Capacidad de pago insuficiente"
+    elif prob >= 40:
+        decision_final = "🟡 REVISIÓN MANUAL"
+        motivo = "Resultado intermedio del modelo"
 
-elif score >= 500 and score < 550:
+    else:
+        decision_final = "🔴 RECHAZADO"
+        motivo = "Resultado desfavorable del modelo"
 
-    decision_final = "🟡 REVISIÓN MANUAL"
-    motivo = "Score crediticio intermedio"
+    # Resultados
 
-elif prob >= 70:
+    st.markdown("---")
+    st.subheader("📊 Resultado de la Evaluación")
 
-    decision_final = "🟢 APROBADO"
-    motivo = "Cumple criterios de riesgo y capacidad de pago"
+    st.success(
+        f"Probabilidad ML: {prob}%"
+    )
 
-elif prob >= 40:
+    st.info(
+        f"Score crediticio: {score}"
+    )
 
-    decision_final = "🟡 REVISIÓN MANUAL"
-    motivo = "Resultado intermedio del modelo"
+    st.info(
+        f"Cuota estimada: ${cuota:,.0f}"
+    )
 
-else:
+    st.info(
+        f"Capacidad de pago: {capacidad_pago:.2f}%"
+    )
 
-    decision_final = "🔴 RECHAZADO"
-    motivo = "Resultado desfavorable del modelo"
+    st.warning(
+        f"Semáforo financiero: {semaforo}"
+    )
 
-    # ---------------------
-# RESULTADOS
-# ---------------------
+    st.markdown(f"## {decision_final}")
 
-st.markdown("---")
-st.markdown("## 📊 RESULTADO DE LA EVALUACIÓN")
-
-st.success(
-    f"Probabilidad del modelo ML: {prob}%"
-)
-
-st.info(
-    f"Score crediticio: {score}"
-)
-
-st.info(
-    f"Cuota estimada: ${cuota:,.0f}"
-)
-
-st.info(
-    f"Capacidad de pago: {capacidad_pago:.2f}%"
-)
-
-st.warning(
-    f"Semáforo financiero: {semaforo}"
-)
-
-st.markdown(
-    f"## {decision_final}"
-)
-
-st.write(f"**Motivo:** {motivo}")
+    st.write(f"**Motivo:** {motivo}")
