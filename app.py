@@ -248,7 +248,8 @@ st.warning(
         f"Semáforo financiero: {semaforo}"
     )
 
-    st.markdown(f"## {decision_final}")
+    
+st.markdown(f"## {decision_final}")
 
     st.write(f"**Motivo:** {motivo}")
 
