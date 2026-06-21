@@ -259,7 +259,6 @@ elif score >= 500:
     explicacion.append("⚠️ Score crediticio intermedio.")
 else:
     explicacion.append("❌ Score crediticio bajo.")
-
 if capacidad_pago < 35:
     explicacion.append("✅ Capacidad de pago saludable.")
 elif capacidad_pago <= 45:
