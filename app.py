@@ -56,7 +56,7 @@ prestamos = st.number_input(
 antiguedad = st.number_input(
     "Antigüedad Laboral (años)",
     min_value=0,
-    value=0
+    value=0,
     key="antiguedad"
 )
 
