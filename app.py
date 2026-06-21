@@ -245,6 +245,8 @@ if st.button("✅ Evaluar Crédito"):
 
     st.markdown(f"## {decision_final}")
 
+    st.write(f"**Motivo:** {motivo}")
+
 st.markdown("---")
 
 if st.button("🔄 Nueva Consulta"):
