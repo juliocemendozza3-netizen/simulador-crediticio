@@ -251,7 +251,8 @@ st.warning(
     
 st.markdown(f"## {decision_final}")
 
-    st.write(f"**Motivo:** {motivo}")
+    
+st.write(f"**Motivo:** {motivo}")
 
 st.markdown("---")
 
