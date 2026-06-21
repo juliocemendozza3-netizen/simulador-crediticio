@@ -37,25 +37,27 @@ ingresos = st.number_input(
     min_value=0,
     value=0,
     step=100000
-)
-
+    
 score = st.number_input(
     "Score Crediticio",
     min_value=300,
     max_value=850,
-    value=300
+    value=300,
+    key="score"
 )
 
 prestamos = st.number_input(
     "Préstamos Previos",
     min_value=0,
     value=0
+    key="prestamos"
 )
 
 antiguedad = st.number_input(
     "Antigüedad Laboral (años)",
     min_value=0,
     value=0
+    key="antiguedad"
 )
 
 # =========================
@@ -100,6 +102,7 @@ valor_credito = st.number_input(
     min_value=1000000,
     value=1000000,
     step=1000000
+    key="valor_credito"
 )
 
 plazo = st.number_input(
@@ -107,6 +110,7 @@ plazo = st.number_input(
     min_value=6,
     max_value=120,
     value=12
+    key="plazo"
 )
 
 # =========================
@@ -244,4 +248,13 @@ if st.button("✅ Evaluar Crédito"):
 st.markdown("---")
 
 if st.button("🔄 Nueva Consulta"):
+
+    st.session_state["edad"] = 18
+    st.session_state["ingresos"] = 0
+    st.session_state["score"] = 300
+    st.session_state["prestamos"] = 0
+    st.session_state["antiguedad"] = 0
+    st.session_state["valor_credito"] = 1000000
+    st.session_state["plazo"] = 12
+
     st.rerun()
