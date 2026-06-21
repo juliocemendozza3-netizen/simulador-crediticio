@@ -101,7 +101,7 @@ valor_credito = st.number_input(
     "Valor Solicitado ($)",
     min_value=1000000,
     value=1000000,
-    step=1000000
+    step=1000000,
     key="valor_credito"
 )
 
