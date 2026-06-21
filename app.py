@@ -250,7 +250,6 @@ if st.button("🔄 Nueva Consulta"):
 # EXPLICACIÓN DETALLADA
 # =========================
 
-
 explicacion = []
 
 if score >= 550:
@@ -259,6 +258,7 @@ elif score >= 500:
     explicacion.append("⚠️ Score crediticio intermedio.")
 else:
     explicacion.append("❌ Score crediticio bajo.")
+
 if capacidad_pago < 35:
     explicacion.append("✅ Capacidad de pago saludable.")
 elif capacidad_pago <= 45:
