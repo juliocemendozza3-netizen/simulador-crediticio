@@ -245,33 +245,3 @@ st.markdown("---")
 
 if st.button("🔄 Nueva Consulta"):
     st.rerun()
-
-# =========================
-# EXPLICACIÓN DETALLADA
-# =========================
-
-explicacion = []
-
-if score >= 550:
-    explicacion.append("✅ Score crediticio favorable.")
-elif score >= 500:
-    explicacion.append("⚠️ Score crediticio intermedio.")
-else:
-    explicacion.append("❌ Score crediticio bajo.")
-
-if capacidad_pago < 35:
-    explicacion.append("✅ Capacidad de pago saludable.")
-elif capacidad_pago <= 45:
-    explicacion.append("⚠️ Capacidad de pago en zona de revisión.")
-else:
-    explicacion.append("❌ Capacidad de pago insuficiente.")
-
-if prob >= 70:
-    explicacion.append("✅ El modelo ML identifica bajo riesgo.")
-elif prob >= 40:
-    explicacion.append("⚠️ El modelo ML recomienda revisión.")
-else:
-    explicacion.append("❌ El modelo ML identifica alto riesgo.")
-
-for item in explicacion:
-    st.write(item)
