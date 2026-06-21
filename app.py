@@ -37,7 +37,7 @@ ingresos = st.number_input(
     min_value=0,
     value=0,
     step=100000
-    
+   ) 
 score = st.number_input(
     "Score Crediticio",
     min_value=300,
