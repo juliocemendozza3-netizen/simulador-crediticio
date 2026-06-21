@@ -218,12 +218,12 @@ if st.button("✅ Evaluar Crédito"):
         decision_final = "🔴 RECHAZADO"
         motivo = "Resultado desfavorable del modelo"
 
-    # Resultados
+        # Resultados
 
     st.markdown("---")
     st.subheader("📊 Resultado de la Evaluación")
 
-        st.success(
+    st.success(
         f"Probabilidad de aprobación: {prob}%"
     )
 
@@ -242,7 +242,6 @@ if st.button("✅ Evaluar Crédito"):
     st.markdown(f"## {decision_final}")
 
     st.write(f"**Motivo:** {motivo}")
-
 st.markdown("---")
 
 if st.button("🔄 Nueva Consulta"):
