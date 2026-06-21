@@ -49,7 +49,7 @@ score = st.number_input(
 prestamos = st.number_input(
     "Préstamos Previos",
     min_value=0,
-    value=0
+    value=0,
     key="prestamos"
 )
 
