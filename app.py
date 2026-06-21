@@ -231,7 +231,6 @@ if st.button("✅ Evaluar Crédito"):
     f"Probabilidad de aprobación: {prob}%"
     )
 
-st.progress(int(prob))
    
 st.info(
         f"Cuota estimada: ${cuota:,.0f}"
