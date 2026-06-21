@@ -185,40 +185,70 @@ if st.button("Evaluar Crédito"):
         semaforo = "🔴 NO VIABLE"
 
     # ---------------------
-    # DECISIÓN FINAL
+# REGLAS DE NEGOCIO
+# ---------------------
+
+motivo = ""
+
+if score < 500:
+
+    decision_final = "🔴 RECHAZADO"
+    motivo = "Score crediticio inferior a 500"
+
+elif capacidad_pago > 45:
+
+    decision_final = "🔴 RECHAZADO"
+    motivo = "Capacidad de pago insuficiente"
+
+elif score >= 500 and score < 550:
+
+    decision_final = "🟡 REVISIÓN MANUAL"
+    motivo = "Score crediticio intermedio"
+
+elif prob >= 70:
+
+    decision_final = "🟢 APROBADO"
+    motivo = "Cumple criterios de riesgo y capacidad de pago"
+
+elif prob >= 40:
+
+    decision_final = "🟡 REVISIÓN MANUAL"
+    motivo = "Resultado intermedio del modelo"
+
+else:
+
+    decision_final = "🔴 RECHAZADO"
+    motivo = "Resultado desfavorable del modelo"
+
     # ---------------------
+# RESULTADOS
+# ---------------------
 
-    if prob >= 70 and capacidad_pago < 45:
-        decision_final = "🟢 APROBADO"
+st.markdown("---")
+st.markdown("## 📊 RESULTADO DE LA EVALUACIÓN")
 
-    elif prob >= 40:
-        decision_final = "🟡 REVISIÓN MANUAL"
+st.success(
+    f"Probabilidad del modelo ML: {prob}%"
+)
 
-    else:
-        decision_final = "🔴 RECHAZADO"
+st.info(
+    f"Score crediticio: {score}"
+)
 
-    # ---------------------
-    # RESULTADOS
-    # ---------------------
+st.info(
+    f"Cuota estimada: ${cuota:,.0f}"
+)
 
-    st.markdown("## Resultado de la Evaluación")
+st.info(
+    f"Capacidad de pago: {capacidad_pago:.2f}%"
+)
 
-    st.success(
-        f"Probabilidad de aprobación (ML): {prob}%"
-    )
+st.warning(
+    f"Semáforo financiero: {semaforo}"
+)
 
-    st.info(
-        f"Cuota estimada: ${cuota:,.0f}"
-    )
+st.markdown(
+    f"## {decision_final}"
+)
 
-    st.info(
-        f"Capacidad de pago utilizada: {capacidad_pago:.2f}%"
-    )
-
-    st.warning(
-        f"Semáforo Financiero: {semaforo}"
-    )
-
-    st.markdown(
-        f"### {decision_final}"
-    )
+st.write(f"**Motivo:** {motivo}")
