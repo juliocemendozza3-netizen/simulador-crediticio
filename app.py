@@ -109,7 +109,7 @@ plazo = st.number_input(
     "Plazo (Meses)",
     min_value=6,
     max_value=120,
-    value=12
+    value=12,
     key="plazo"
 )
 
