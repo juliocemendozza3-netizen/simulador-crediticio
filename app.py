@@ -13,10 +13,10 @@ scaler = joblib.load("scaler_creditos.pkl")
 # INTERFAZ
 # =========================
 
-st.title("🏦 Simulador Crédito Banco de Mendoza")
+st.title("🏦 Simulador Banco Mendoza")
 
 st.write(
-    "Evaluación basada en Machine Learning, score crediticio y capacidad de pago."
+    "Evaluación basada en Machine Learning, score crediticio y capacidad de pago libre inversión."
 )
 
 # =========================
