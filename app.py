@@ -1,10 +1,30 @@
 import streamlit as st
 import pandas as pd
 import joblib
-
 import gspread
-from google.oauth2.service_account import Credentials
+
 from datetime import datetime
+from google.oauth2.service_account import Credentials
+
+# =========================
+# GOOGLE SHEETS
+# =========================
+
+scope = [
+    "https://www.googleapis.com/auth/spreadsheets",
+    "https://www.googleapis.com/auth/drive"
+]
+
+creds = Credentials.from_service_account_info(
+    st.secrets["gcp_service_account"],
+    scopes=scope
+)
+
+cliente_google = gspread.authorize(creds)
+
+sheet = cliente_google.open_by_key(
+    "1gZSTBtwx00MIh1b01rm2lDqBBjWnmA78o7agYh9zeG4"
+).sheet1
 
 # =========================
 # CARGA DEL MODELO
