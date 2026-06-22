@@ -263,22 +263,32 @@ if st.button("✅ Evaluar Crédito"):
         f"Semáforo financiero: {semaforo}"
     )
 
-    st.markdown(f"## {decision_final}")
+        st.markdown(f"## {decision_final}")
 
-st.write(f"**Motivo:** {motivo}")
+    st.write(f"**Motivo:** {motivo}")
 
-sheet.append_row([
-    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-    edad,
-    ingresos,
-    score,
-    valor_credito,
-    plazo,
-    prob,
-    round(capacidad_pago, 2),
-    decision_final,
-    motivo
-])
+    # =========================
+    # GUARDAR EN GOOGLE SHEETS
+    # =========================
+
+    sheet.append_row([
+        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        edad,
+        ingresos,
+        score,
+        valor_credito,
+        plazo,
+        prob,
+        round(capacidad_pago, 2),
+        decision_final,
+        motivo
+    ])
+
+    st.success("✅ Solicitud guardada en Google Sheets")
+
+# =========================
+# NUEVA CONSULTA
+# =========================
 
 st.markdown("---")
 
