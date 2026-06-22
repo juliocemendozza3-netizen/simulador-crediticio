@@ -245,5 +245,14 @@ if st.button("✅ Evaluar Crédito"):
 st.markdown("---")
 
 if st.button("🔄 Nueva Consulta"):
+
+    st.session_state.edad = 18
+    st.session_state.ingresos = 0
+    st.session_state.score = 300
+    st.session_state.prestamos = 0
+    st.session_state.antiguedad = 0
+    st.session_state.valor_credito = 1000000
+    st.session_state.plazo = 12
+
     st.rerun()
     
