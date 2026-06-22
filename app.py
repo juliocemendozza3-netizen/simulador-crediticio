@@ -268,5 +268,22 @@ if st.button("✅ Evaluar Crédito"):
     st.write(f"**Motivo:** {motivo}")
 st.markdown("---")
 
+# =========================
+# GUARDAR SOLICITUD
+# =========================
+
+sheet.append_row([
+    datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    edad,
+    ingresos,
+    score,
+    valor_credito,
+    plazo,
+    prob,
+    round(capacidad_pago, 2),
+    decision_final,
+    motivo
+])
+
 if st.button("🔄 Nueva Consulta"):
     st.rerun()
