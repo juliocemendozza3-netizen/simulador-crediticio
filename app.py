@@ -265,12 +265,7 @@ if st.button("✅ Evaluar Crédito"):
 
     st.markdown(f"## {decision_final}")
 
-    st.write(f"**Motivo:** {motivo}")
-st.markdown("---")
-
-# =========================
-# GUARDAR SOLICITUD
-# =========================
+st.write(f"**Motivo:** {motivo}")
 
 sheet.append_row([
     datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -284,6 +279,8 @@ sheet.append_row([
     decision_final,
     motivo
 ])
+
+st.markdown("---")
 
 if st.button("🔄 Nueva Consulta"):
     st.rerun()
