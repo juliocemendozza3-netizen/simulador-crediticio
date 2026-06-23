@@ -4,3 +4,4 @@ joblib
 gspread
 google-auth
 plotly
+streamlit-autorefresh
