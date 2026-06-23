@@ -1,9 +1,16 @@
 import streamlit as st
 import pandas as pd
+from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
     page_title="Dashboard Banco Mendoza",
     layout="wide"
+)
+
+# Actualizar automáticamente cada 10 segundos
+st_autorefresh(
+    interval=10000,
+    key="dashboard_refresh"
 )
 
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSSZEU4gn9FertCpntuqUc10Qij3o30n4cz1iPjZ6YwTGFibiKWNfIbjKxuEb7QnlqRoY7_643-yd0Q/pub?gid=0&single=true&output=csv"
