@@ -6,6 +6,8 @@ import gspread
 from datetime import datetime
 from google.oauth2.service_account import Credentials
 
+from styles import aplicar_estilos
+
 # =========================
 # GOOGLE SHEETS
 # =========================
