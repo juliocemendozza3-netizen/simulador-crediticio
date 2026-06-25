@@ -326,53 +326,23 @@ with col1:
     )
     with col2:
 
-      st.subheader("🎯 Probabilidad Promedio")
+    st.subheader("🎯 Probabilidad Promedio")
 
-      fig = go.Figure(
+    fig = go.Figure(
         go.Indicator(
-
             mode="gauge+number",
-
             value=prob,
-
-            number={
-                "suffix": "%"
-            },
-
-            title={
-                "text": "Nivel de aprobación"
-            },
-
+            number={"suffix": "%"},
+            title={"text": "Nivel de aprobación"},
             gauge={
-
-                "axis": {
-                    "range": [0, 100]
-                },
-
-                "bar": {
-                    "color": "#1565C0"
-                },
-
+                "axis": {"range": [0, 100]},
+                "bar": {"color": "#1565C0"},
                 "steps": [
-
-                    {
-                        "range": [0, 40],
-                        "color": "#F44336"
-                    },
-
-                    {
-                        "range": [40, 70],
-                        "color": "#FFC107"
-                    },
-
-                    {
-                        "range": [70, 100],
-                        "color": "#4CAF50"
-                    }
-
-                ]
-            }
-
+                    {"range": [0, 40], "color": "#F44336"},
+                    {"range": [40, 70], "color": "#FFC107"},
+                    {"range": [70, 100], "color": "#4CAF50"},
+                ],
+            },
         )
     )
 
@@ -389,4 +359,5 @@ with col1:
     st.plotly_chart(
         fig,
         use_container_width=True
+    )
     )
