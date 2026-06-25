@@ -228,9 +228,9 @@ with kpi6:
 with kpi7:
 
     st.metric(
-        "Probabilidad",
-        f"{prob_promedio:.1f}%"
-    )
+    "Probabilidad",
+    f"{prob_promedio:.1f}%"
+)
 
 with kpi8:
 
