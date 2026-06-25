@@ -287,6 +287,11 @@ st.markdown("---")
 st.subheader("📊 Indicadores Ejecutivos")
 
 col1, col2 = st.columns(2)
+
+# =====================================
+# DONA
+# =====================================
+
 with col1:
 
     resultados = (
@@ -301,31 +306,27 @@ with col1:
     ]
 
     fig = px.pie(
-
         resultados,
-
         names="Resultado",
-
         values="Cantidad",
-
         hole=0.65
-
     )
 
     fig.update_layout(
-
         title="Resultado de Solicitudes",
-
         height=430
-
     )
 
     st.plotly_chart(
         fig,
         use_container_width=True
     )
-    
-    with col2:
+
+# =====================================
+# VELOCÍMETRO
+# =====================================
+
+with col2:
 
     st.subheader("🎯 Probabilidad Promedio")
 
@@ -342,8 +343,8 @@ with col1:
                     {"range": [0, 40], "color": "#F44336"},
                     {"range": [40, 70], "color": "#FFC107"},
                     {"range": [70, 100], "color": "#4CAF50"},
-                ],
-            },
+                ]
+            }
         )
     )
 
@@ -361,4 +362,3 @@ with col1:
         fig,
         use_container_width=True
     )
-    
