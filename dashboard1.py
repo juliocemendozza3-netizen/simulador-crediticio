@@ -294,12 +294,13 @@ col1, col2 = st.columns(2)
 
 with col1:
 
+    st.markdown("### 🥧 Resultado de Solicitudes")
+
     resultados = (
         df["Resultado"]
         .value_counts()
         .reset_index()
     )
-
     resultados.columns = [
         "Resultado",
         "Cantidad"
@@ -313,13 +314,13 @@ with col1:
     )
 
     fig.update_layout(
-    title= "",
+  
     height=430,
     margin=dict(
-        l=20,
-        r=20,
-        t=20,
-        b=20
+        l=10,
+        r=10,
+        t=0,
+        b=10
     )
 )
 
@@ -334,7 +335,7 @@ with col1:
 
 with col2:
 
-    st.subheader("Probabilidad Promedio")
+    st.subheader("Probabilidad de aprobación")
 
     fig = go.Figure(
         go.Indicator(
