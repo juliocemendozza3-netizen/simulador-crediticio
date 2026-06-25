@@ -313,9 +313,15 @@ with col1:
     )
 
     fig.update_layout(
-        title="Resultado de Solicitudes",
-        height=430
+    title=None,
+    height=430,
+    margin=dict(
+        l=20,
+        r=20,
+        t=20,
+        b=20
     )
+)
 
     st.plotly_chart(
         fig,
