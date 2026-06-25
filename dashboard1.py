@@ -294,7 +294,7 @@ col1, col2 = st.columns(2)
 
 with col1:
 
-    st.markdown("### 🥧 Resultado de Solicitudes")
+    st.markdown("###  Resultado de Solicitudes")
 
     resultados = (
         df["Resultado"]
