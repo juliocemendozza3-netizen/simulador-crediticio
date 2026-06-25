@@ -3,109 +3,339 @@ import streamlit as st
 def aplicar_estilos():
 
     st.markdown("""
-    <style>
+<style>
 
-    /* ==========================
-       FONDO GENERAL
-    ========================== */
+/* ======================================================
+BANCO MENDOZA
+Sistema Inteligente de Evaluación Crediticia
+======================================================*/
 
-    .stApp{
-        background-color:#F3F8FF;
-    }
+/* Importar fuente */
 
-    /* ==========================
-       TÍTULO
-    ========================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-    .titulo-principal{
-        font-size:42px;
-        font-weight:700;
-        color:#0A4FAF;
-        margin-bottom:5px;
-    }
+/* Fondo general */
 
-    .subtitulo{
-        color:#5D6D7E;
-        font-size:18px;
-        margin-top:-10px;
-    }
+html, body, [class*="css"] {
 
-    /* ==========================
-       TARJETAS
-    ========================== */
+    font-family: 'Inter', sans-serif;
 
-    .card{
+}
 
-        background:white;
+.stApp{
 
-        padding:25px;
+    background:#F3F8FD;
 
-        border-radius:18px;
+}
 
-        box-shadow:0px 6px 20px rgba(0,0,0,.10);
+/* Ocultar elementos Streamlit */
 
-        margin-bottom:20px;
+#MainMenu{
 
-    }
+    visibility:hidden;
 
-    /* ==========================
-       BOTONES
-    ========================== */
+}
 
-    .stButton>button{
+footer{
 
-        width:100%;
+    visibility:hidden;
 
-        background:#0B5ED7;
+}
 
-        color:white;
+header{
 
-        border:none;
+    visibility:hidden;
 
-        border-radius:12px;
+}
 
-        height:55px;
+/* ==========================
+HEADER
+========================== */
 
-        font-size:18px;
+.header{
 
-        font-weight:bold;
+    background:linear-gradient(90deg,#0057B8,#1E88E5);
 
-    }
+    padding:28px;
 
-    .stButton>button:hover{
+    border-radius:18px;
 
-        background:#0849A3;
+    color:white;
 
-        color:white;
+    box-shadow:0px 8px 25px rgba(0,0,0,.15);
 
-    }
+    margin-bottom:25px;
 
-    /* ==========================
-       INPUTS
-    ========================== */
+}
 
-    input{
+.header h1{
 
-        border-radius:10px !important;
+    font-size:38px;
 
-    }
+    margin-bottom:5px;
 
-    /* ==========================
-       MÉTRICAS
-    ========================== */
+    font-weight:700;
 
-    div[data-testid="metric-container"]{
+}
 
-        background:white;
+.header h4{
 
-        border-radius:18px;
+    font-weight:400;
 
-        padding:15px;
+    opacity:.9;
 
-        box-shadow:0px 4px 15px rgba(0,0,0,.08);
+}
 
-    }
+/* ==========================
+CARDS
+========================== */
 
-    </style>
+.card{
 
-    """, unsafe_allow_html=True)
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+    border:1px solid #EEF2F7;
+
+    margin-bottom:20px;
+
+}
+
+/* ==========================
+TÍTULOS
+========================== */
+
+.section-title{
+
+    color:#0057B8;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:15px;
+
+}
+
+/* ==========================
+INPUTS
+========================== */
+
+input{
+
+    border-radius:12px !important;
+
+}
+
+textarea{
+
+    border-radius:12px !important;
+
+}
+
+div[data-baseweb="select"]{
+
+    border-radius:12px;
+
+}
+
+/* ==========================
+BOTONES
+========================== */
+
+.stButton>button{
+
+    width:100%;
+
+    background:#0057B8;
+
+    color:white;
+
+    border:none;
+
+    border-radius:12px;
+
+    height:55px;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+.stButton>button:hover{
+
+    background:#00408D;
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+KPIs
+========================== */
+
+div[data-testid="metric-container"]{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0px 4px 15px rgba(0,0,0,.08);
+
+    border-left:6px solid #0057B8;
+
+}
+
+div[data-testid="metric-container"] label{
+
+    color:#7A7A7A;
+
+    font-weight:600;
+
+}
+
+div[data-testid="metric-container"] div{
+
+    color:#0057B8;
+
+}
+
+/* ==========================
+SUCCESS
+========================== */
+
+.stSuccess{
+
+    border-radius:15px;
+
+}
+
+/* ==========================
+WARNING
+========================== */
+
+.stWarning{
+
+    border-radius:15px;
+
+}
+
+/* ==========================
+INFO
+========================== */
+
+.stInfo{
+
+    border-radius:15px;
+
+}
+
+/* ==========================
+DATAFRAME
+========================== */
+
+.dataframe{
+
+    border:none;
+
+}
+
+/* ==========================
+SIDEBAR
+========================== */
+
+section[data-testid="stSidebar"]{
+
+    background:#0B3B75;
+
+}
+
+section[data-testid="stSidebar"] *{
+
+    color:white;
+
+}
+
+/* ==========================
+PROGRESS
+========================== */
+
+.stProgress>div>div{
+
+    background:#0057B8;
+
+}
+
+/* ==========================
+EXPANDER
+========================== */
+
+.streamlit-expanderHeader{
+
+    font-weight:600;
+
+}
+
+/* ==========================
+SEPARADOR
+========================== */
+
+hr{
+
+    border:1px solid #E6EEF7;
+
+}
+
+/* ==========================
+TABLAS
+========================== */
+
+table{
+
+    border-collapse:collapse;
+
+}
+
+thead tr{
+
+    background:#0057B8;
+
+    color:white;
+
+}
+
+tbody tr:nth-child(even){
+
+    background:#F5F9FF;
+
+}
+
+/* ==========================
+FOOTER
+========================== */
+
+.footer{
+
+    text-align:center;
+
+    color:#8A8A8A;
+
+    margin-top:40px;
+
+    font-size:14px;
+
+}
+
+</style>
+
+""", unsafe_allow_html=True)
