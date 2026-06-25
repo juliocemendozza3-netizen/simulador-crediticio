@@ -356,7 +356,7 @@ with col2:
     )
 
     fig.update_layout(
-        height=370,
+        height=430,
         margin=dict(
             l=20,
             r=20,
