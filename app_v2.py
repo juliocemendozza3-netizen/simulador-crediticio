@@ -130,3 +130,192 @@ with col_fecha:
     )
 
 st.markdown("---")
+
+# ============================================================
+# DASHBOARD EJECUTIVO
+# ============================================================
+
+if len(df) > 0:
+
+    total_solicitudes = len(df)
+
+    aprobados = len(df[df["decision_final"].str.contains("APROBADO", case=False)])
+
+    rechazados = len(df[df["decision_final"].str.contains("RECHAZADO", case=False)])
+
+    revision = len(df[df["decision_final"].str.contains("REVIS", case=False)])
+
+    monto_total = df["valor_credito"].sum()
+
+    score_promedio = df["score"].mean()
+
+    prob_promedio = df["prob"].mean()
+
+    capacidad_promedio = df["capacidad_pago"].mean()
+
+else:
+
+    total_solicitudes = 0
+    aprobados = 0
+    rechazados = 0
+    revision = 0
+    monto_total = 0
+    score_promedio = 0
+    prob_promedio = 0
+    capacidad_promedio = 0
+
+
+st.markdown("## 📊 Dashboard Ejecutivo")
+
+
+kpi1,kpi2,kpi3,kpi4 = st.columns(4)
+
+with kpi1:
+
+    st.metric(
+        "Solicitudes",
+        f"{total_solicitudes}"
+    )
+
+with kpi2:
+
+    st.metric(
+        "Aprobados",
+        f"{aprobados}"
+    )
+
+with kpi3:
+
+    st.metric(
+        "Rechazados",
+        f"{rechazados}"
+    )
+
+with kpi4:
+
+    st.metric(
+        "En Revisión",
+        f"{revision}"
+    )
+
+
+
+kpi5,kpi6,kpi7,kpi8 = st.columns(4)
+
+with kpi5:
+
+    st.metric(
+        "Monto Solicitado",
+        f"${monto_total:,.0f}"
+    )
+
+with kpi6:
+
+    st.metric(
+        "Score Promedio",
+        f"{score_promedio:.0f}"
+    )
+
+with kpi7:
+
+    st.metric(
+        "Probabilidad",
+        f"{prob_promedio:.1f}%"
+    )
+
+with kpi8:
+
+    st.metric(
+        "Capacidad Pago",
+        f"{capacidad_promedio:.1f}%"
+    )
+
+
+st.markdown("---")
+
+st.markdown("## 👤 Información del Cliente")
+
+col1,col2 = st.columns(2)
+
+with col1:
+
+    edad = st.number_input(
+        "Edad",
+        18,
+        100,
+        30
+    )
+
+    ingresos = st.number_input(
+        "Ingresos Mensuales",
+        min_value=0,
+        step=100000
+    )
+
+    score = st.number_input(
+        "Score Crediticio",
+        300,
+        850,
+        650
+    )
+
+    prestamos = st.number_input(
+        "Préstamos Previos",
+        0,
+        20,
+        0
+    )
+
+    antiguedad = st.number_input(
+        "Antigüedad Laboral",
+        0,
+        40,
+        5
+    )
+
+with col2:
+
+    tipo_contrato = st.selectbox(
+        "Tipo Contrato",
+        [
+            "Indefinido",
+            "Independiente",
+            "Temporal"
+        ]
+    )
+
+    vivienda = st.selectbox(
+        "Vivienda Propia",
+        [
+            "Sí",
+            "No"
+        ]
+    )
+
+    historial_mora = st.selectbox(
+        "Historial Mora",
+        [
+            "Ninguna",
+            "Ocasional"
+        ]
+    )
+
+    nivel_educativo = st.selectbox(
+        "Nivel Educativo",
+        [
+            "Tecnico",
+            "Profesional",
+            "Posgrado"
+        ]
+    )
+
+    estado_civil = st.selectbox(
+        "Estado Civil",
+        [
+            "Casado",
+            "Soltero",
+            "Union Libre"
+        ]
+    )
+
+st.markdown("---")
