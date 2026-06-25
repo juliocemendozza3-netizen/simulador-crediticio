@@ -279,3 +279,48 @@ with c8:
 """,unsafe_allow_html=True)
 
 st.markdown("---")
+
+# ======================================================
+# DASHBOARD GRÁFICO
+# ======================================================
+
+st.subheader("📊 Indicadores Ejecutivos")
+
+col1, col2 = st.columns(2)
+with col1:
+
+    resultados = (
+        df["Resultado"]
+        .value_counts()
+        .reset_index()
+    )
+
+    resultados.columns = [
+        "Resultado",
+        "Cantidad"
+    ]
+
+    fig = px.pie(
+
+        resultados,
+
+        names="Resultado",
+
+        values="Cantidad",
+
+        hole=0.65
+
+    )
+
+    fig.update_layout(
+
+        title="Resultado de Solicitudes",
+
+        height=430
+
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
