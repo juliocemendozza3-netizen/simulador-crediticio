@@ -5,3 +5,6 @@ gspread
 google-auth
 plotly
 streamlit-autorefresh
+scikit-learn
+numpy
+scipy
