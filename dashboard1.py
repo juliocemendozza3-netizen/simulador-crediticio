@@ -146,7 +146,7 @@ st.markdown(f"""
 
 <div class="header">
 
-<h1>🏦 BANCO MENDOZA</h1>
+<h1> BANCO MENDOZA</h1>
 
 <h4>Sistema Inteligente de Evaluación Crediticia</h4>
 
@@ -284,7 +284,7 @@ st.markdown("---")
 # DASHBOARD GRÁFICO
 # ======================================================
 
-st.subheader("📊 Indicadores Ejecutivos")
+st.subheader(" Indicadores Ejecutivos")
 
 col1, col2 = st.columns(2)
 
@@ -334,14 +334,14 @@ with col1:
 
 with col2:
 
-    st.subheader("🎯 Probabilidad Promedio")
+    st.subheader("Probabilidad Promedio")
 
     fig = go.Figure(
         go.Indicator(
             mode="gauge+number",
             value=prob,
             number={"suffix": "%"},
-            title={"text": "Nivel de aprobación"},
+            title={"text": " "},
             gauge={
                 "axis": {"range": [0, 100]},
                 "bar": {"color": "#1565C0"},
