@@ -324,6 +324,7 @@ with col1:
         fig,
         use_container_width=True
     )
+    
     with col2:
 
     st.subheader("🎯 Probabilidad Promedio")
