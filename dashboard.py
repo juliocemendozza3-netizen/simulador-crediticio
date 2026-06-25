@@ -1,8 +1,5 @@
 import streamlit as st
 import pandas as pd
-import gspread
-
-from google.oauth2.service_account import Credentials
 from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
@@ -16,36 +13,13 @@ st_autorefresh(
     key="dashboard_refresh"
 )
 
-# ======================================================
-# CONEXIÓN A GOOGLE SHEETS
-# ======================================================
+CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSSZEU4gn9FertCpntuqUc10Qij3o30n4cz1iPjZ6YwTGFibiKWNfIbjKxuEb7QnlqRoY7_643-yd0Q/pub?gid=0&single=true&output=csv"
 
-scope = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive"
-]
-
-creds = Credentials.from_service_account_info(
-    st.secrets["gcp_service_account"],
-    scopes=scope
-)
-
-cliente_google = gspread.authorize(creds)
-
-sheet = cliente_google.open_by_key(
-    "1gZSTBtwx00MIh1b01rm2lDqBBjWnmA78o7agYh9zeG4"
-).sheet1
-
-# ======================================================
+# =========================
 # CARGAR DATOS
-# ======================================================
+# =========================
 
-@st.cache_data(ttl=5)
-def cargar_datos():
-    registros = sheet.get_all_records()
-    return pd.DataFrame(registros)
-
-df = cargar_datos()
+df = pd.read_csv(CSV_URL)
 
 # Convertir columnas numéricas
 columnas_numericas = [
@@ -146,3 +120,4 @@ st.dataframe(
     df,
     use_container_width=True
 )
+
