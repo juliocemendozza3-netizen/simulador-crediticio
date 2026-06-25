@@ -326,9 +326,9 @@ with col1:
     )
     with col2:
 
-    st.subheader("🎯 Probabilidad Promedio")
+      st.subheader("🎯 Probabilidad Promedio")
 
-    fig = go.Figure(
+      fig = go.Figure(
         go.Indicator(
 
             mode="gauge+number",
