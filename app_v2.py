@@ -62,6 +62,8 @@ def cargar_datos():
 
 
 df = cargar_datos()
+df["Probabilidad"] = pd.to_numeric(df["Probabilidad"], errors="coerce")
+df["Capacidad_Pago"] = pd.to_numeric(df["Capacidad_Pago"], errors="coerce")
 
 if not df.empty:
 
