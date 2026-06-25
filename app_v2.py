@@ -63,6 +63,15 @@ def cargar_datos():
 
 df = cargar_datos()
 
+if not df.empty:
+
+    df = df.rename(columns={
+        "Resultado": "decision_final",
+        "Valor_Credito": "valor_credito",
+        "Score": "score",
+        "Probabilidad": "prob",
+        "Capacidad_Pago": "capacidad_pago"
+    })
 
 # ============================================================
 # MODELO DE MACHINE LEARNING
