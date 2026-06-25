@@ -360,4 +360,4 @@ with col1:
         fig,
         use_container_width=True
     )
-    )
+    
