@@ -7,7 +7,7 @@ from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
     page_title="Dashboard Banco Mendoza",
-    page_icon="🏦",
+    page_icon="",
     layout="wide"
 )
 
@@ -162,7 +162,7 @@ box-shadow:0 8px 20px rgba(0,0,0,.15);
 ">
 
 <h1 style="margin:0;">
-🏦 BANCO MENDOZA
+BANCO MENDOZA
 </h1>
 
 <h3 style="margin-top:8px;font-weight:400;">
@@ -232,7 +232,7 @@ st.markdown("---")
 # INDICADORES EJECUTIVOS
 # =====================================================
 
-st.subheader("📊 Indicadores Ejecutivos")
+st.subheader("Indicadores Ejecutivos")
 
 col1, col2 = st.columns(2)
 
@@ -370,7 +370,7 @@ col3, col4 = st.columns(2)
 
 with col3:
 
-    st.subheader("🎯 Probabilidad Promedio")
+    st.subheader("Probabilidad Promedio")
 
     fig = go.Figure(
         go.Indicator(
@@ -428,7 +428,7 @@ with col3:
 
 with col4:
 
-    st.subheader("📈 Evolución del Score Crediticio")
+    st.subheader("Evolución del Score Crediticio")
 
     fig = px.line(
         df,
@@ -471,7 +471,7 @@ with col4:
 
 st.markdown("---")
 
-st.subheader("📋 Últimas Solicitudes")
+st.subheader("Últimas Solicitudes")
 
 st.dataframe(
 
