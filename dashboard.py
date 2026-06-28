@@ -3,6 +3,9 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
 from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
@@ -52,7 +55,7 @@ CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSSZEU4gn9FertCpntuqU
 df = pd.read_csv(CSV_URL)
 st.write("Número de registros:", len(df))
 
-st.write("Últimos 5 registros")
+st.write("Últimos 3 registros")
 
 st.dataframe(df.tail())
 
