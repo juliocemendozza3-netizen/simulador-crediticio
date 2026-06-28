@@ -227,9 +227,201 @@ c8.metric(
 )
 
 st.markdown("---")
+# =====================================================
+# INDICADORES EJECUTIVOS
+# =====================================================
 
-st.markdown("""
-<style>
+st.subheader("📊 Indicadores Ejecutivos")
+
+graf1, graf2 = st.columns(2)
+
+# =====================================================
+# DONUT
+# =====================================================
+
+with graf1:
+
+    resultados = (
+        df["Resultado"]
+        .value_counts()
+        .reset_index()
+    )
+
+    resultados.columns = ["Resultado", "Cantidad"]
+
+    colores = []
+
+    for r in resultados["Resultado"]:
+
+        texto = str(r).upper()
+
+        if "APROBADO" in texto:
+            colores.append("#2E7D32")
+
+        elif "RECHAZADO" in texto:
+            colores.append("#D32F2F")
+
+        else:
+            colores.append("#FBC02D")
+
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                labels=resultados["Resultado"],
+                values=resultados["Cantidad"],
+                hole=0.60,
+                marker=dict(colors=colores)
+            )
+        ]
+    )
+
+    fig.update_layout(
+        title="Resultado de Solicitudes",
+        height=380,
+        margin=dict(l=20, r=20, t=60, b=20)
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+# =====================================================
+# BARRAS
+# =====================================================
+
+with graf2:
+
+    estado = pd.DataFrame({
+
+        "Estado":[
+            "Aprobados",
+            "Rechazados",
+            "En Revisión"
+        ],
+
+        "Cantidad":[
+            aprobados,
+            rechazados,
+            revision
+        ]
+
+    })
+
+    fig = px.bar(
+
+        estado,
+
+        x="Estado",
+
+        y="Cantidad",
+
+        color="Estado",
+
+        text="Cantidad",
+
+        color_discrete_map={
+
+            "Aprobados":"#2E7D32",
+
+            "Rechazados":"#D32F2F",
+
+            "En Revisión":"#FBC02D"
+
+        }
+
+    )
+
+    fig.update_traces(
+        textposition="outside",
+        cliponaxis=False
+    )
+
+    fig.update_layout(
+        showlegend=False,
+        height=380,
+        margin=dict(l=20, r=20, t=60, b=20)
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+    # =====================================================
+# SEGUNDA FILA DE GRÁFICOS
+# =====================================================
+
+graf3, graf4 = st.columns(2)
+
+# =====================================================
+# VELOCÍMETRO
+# =====================================================
+
+with graf3:
+
+    st.subheader("🎯 Probabilidad Promedio")
+
+    fig = go.Figure(
+        go.Indicator(
+            mode="gauge+number",
+            value=prob_promedio,
+            number={"suffix": "%"},
+            title={"text": "Nivel de aprobación"},
+            gauge={
+                "axis": {"range": [0, 100]},
+                "bar": {"color": "#1565C0"},
+                "steps": [
+                    {"range": [0, 40], "color": "#D32F2F"},
+                    {"range": [40, 70], "color": "#FBC02D"},
+                    {"range": [70, 100], "color": "#2E7D32"},
+                ],
+            },
+        )
+    )
+
+    fig.update_layout(
+        height=380
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+# =====================================================
+# SCORE CREDITICIO
+# =====================================================
+
+with graf4:
+
+    st.subheader("📈 Evolución del Score Crediticio")
+
+    fig = px.line(
+        df,
+        y="Score",
+        markers=True
+    )
+
+    fig.update_traces(
+        line=dict(
+            color="#1565C0",
+            width=3
+        ),
+        marker=dict(
+            size=8
+        )
+    )
+
+    fig.update_layout(
+        height=380,
+        xaxis_title="Solicitudes",
+        yaxis_title="Score"
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
 /* =====================================================
    TARJETAS KPI (Solicitudes, Aprobados, etc.)
@@ -290,11 +482,25 @@ div[data-testid="stPlotlyChart"]{
 </style>
 """, unsafe_allow_html=True)
 
+st.markdown("---")
+
 # =====================================================
-# BARRAS
+# INDICADORES EJECUTIVOS
 # =====================================================
 
-with col2:
+st.subheader("📊 Indicadores Ejecutivos")
+
+graf1, graf2 = st.columns(2)
+
+with graf1:
+    ...
+    # DONUT
+
+with graf2:
+    ...
+    # BARRAS
+# =====================================================
+with graf2:
 
     estado = pd.DataFrame({
 
