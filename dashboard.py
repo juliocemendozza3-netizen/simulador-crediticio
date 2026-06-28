@@ -6,23 +6,25 @@ import plotly.graph_objects as go
 from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
-    
-    st.markdown("""
+    page_title="Dashboard Banco Mendoza",
+    page_icon="🏦",
+    layout="wide"
+)
+
+st.markdown("""
 <style>
 
-.grafico-card{
+div[data-testid="stPlotlyChart"]{
 
     background:white;
 
-    padding:20px;
-
     border-radius:18px;
 
-    box-shadow:0 4px 12px rgba(0,0,0,.12);
+    padding:12px;
+
+    box-shadow:0 4px 10px rgba(0,0,0,.10);
 
     border:1px solid #E5E7EB;
-
-    margin-bottom:15px;
 
 }
 
