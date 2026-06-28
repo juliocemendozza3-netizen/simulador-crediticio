@@ -331,7 +331,7 @@ with graf2:
         ]
 
     })
-       fig = px.bar(
+        fig = px.bar(
     estado,
 
     x="Estado",
