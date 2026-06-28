@@ -134,17 +134,11 @@ capacidad = round(df["Capacidad_Pago"].mean(),1)
 
 st.markdown("""
 <div style="
-
 background:linear-gradient(90deg,#0D47A1,#1976D2);
-
 padding:28px;
-
 border-radius:18px;
-
 color:white;
-
 box-shadow:0 8px 20px rgba(0,0,0,.15);
-
 ">
 
 <h1 style="margin:0;">
@@ -160,8 +154,7 @@ Dashboard Ejecutivo • Actualización automática
 </p>
 
 </div>
-
-""",unsafe_allow_html=True)
+""", unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -391,7 +384,7 @@ with col3:
     )
 
     fig.update_layout(
-        height=430
+        height=330
     )
 
     st.plotly_chart(
@@ -414,11 +407,22 @@ with col4:
     )
 
     fig.update_traces(
-        line=dict(
-            color="#1565C0",
-            width=3
-        )
+
+    line=dict(
+
+        color="#1565C0",
+
+        width=3
+
+    ),
+
+    marker=dict(
+
+        size=8
+
     )
+
+)
 
     fig.update_layout(
         height=420,
