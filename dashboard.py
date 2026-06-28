@@ -281,20 +281,21 @@ with col1:
     )
 
     fig.update_layout(
-        title="Resultado de Solicitudes",
-        height=330
+
+    showlegend=False,
+
+    height=380,
+
+    margin=dict(
+        l=20,
+        r=20,
+        t=60,
+        b=20
     )
 
-    st.plotly_chart(
-    fig,
-    use_container_width=True
 )
 
-st.markdown(
-    "</div>",
-    unsafe_allow_html=True
 )
-
 # =====================================================
 # BARRAS
 # =====================================================
@@ -342,14 +343,15 @@ with col2:
     )
 
     fig.update_traces(
-        textposition="outside"
-    )
+    textposition="outside",
+    cliponaxis=False
+)
 
     fig.update_layout(
 
         showlegend=False,
 
-        height=330
+        height=380
 
     )
 
@@ -413,7 +415,7 @@ with col3:
     )
 
     fig.update_layout(
-        height=330
+        height=380
     )
 
     st.plotly_chart(
@@ -454,7 +456,7 @@ with col4:
 )
 
     fig.update_layout(
-        height=330,
+        height=380,
         xaxis_title="Solicitudes",
         yaxis_title="Score"
     )
