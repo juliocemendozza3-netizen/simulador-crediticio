@@ -331,28 +331,30 @@ with graf2:
         ]
 
     })
-        fig = px.bar(
-    estado,
 
-    x="Estado",
+    fig = px.bar(
 
-    y="Cantidad",
+        estado,
 
-    color="Estado",
+        x="Estado",
 
-    text="Cantidad",
+        y="Cantidad",
 
-    color_discrete_map={
+        color="Estado",
 
-        "Aprobados":"#2E7D32",
+        text="Cantidad",
 
-        "Rechazados":"#D32F2F",
+        color_discrete_map={
 
-        "En Revisión":"#FBC02D"
+            "Aprobados":"#2E7D32",
 
-    }
+            "Rechazados":"#D32F2F",
 
-)
+            "En Revisión":"#FBC02D"
+
+        }
+
+    )
 
 # =====================================================
 # TABLA
