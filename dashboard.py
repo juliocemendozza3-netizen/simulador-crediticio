@@ -290,18 +290,18 @@ with graf1:
 
     fig.update_layout(
 
-        title="Resultado de Solicitudes",
+    showlegend=False,
 
-        height=380,
+    height=450,
 
-        margin=dict(
-            l=20,
-            r=20,
-            t=60,
-            b=20
-        )
-
+    margin=dict(
+        l=40,
+        r=40,
+        t=60,
+        b=70
     )
+
+)
 
     st.plotly_chart(
         fig,
