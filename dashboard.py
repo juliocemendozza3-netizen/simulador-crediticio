@@ -132,11 +132,36 @@ capacidad = round(df["Capacidad_Pago"].mean(),1)
 # ENCABEZADO
 # =====================================================
 
-st.title("🏦 Banco Mendoza")
+st.markdown("""
+<div style="
 
-st.caption(
-    "Dashboard Ejecutivo • Actualización automática cada 10 segundos"
-)
+background:linear-gradient(90deg,#0D47A1,#1976D2);
+
+padding:28px;
+
+border-radius:18px;
+
+color:white;
+
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+
+">
+
+<h1 style="margin:0;">
+🏦 BANCO MENDOZA
+</h1>
+
+<h3 style="margin-top:8px;font-weight:400;">
+Sistema Inteligente de Evaluación Crediticia
+</h3>
+
+<p style="margin-top:10px;">
+Dashboard Ejecutivo • Actualización automática
+</p>
+
+</div>
+
+""",unsafe_allow_html=True)
 
 st.markdown("---")
 
@@ -311,112 +336,100 @@ with col2:
         use_container_width=True
     )
     # =====================================================
+# SEGUNDA FILA DE GRÁFICOS
+# =====================================================
+
+col3, col4 = st.columns(2)
+
+# =====================================================
 # VELOCÍMETRO
 # =====================================================
 
-st.markdown("---")
+with col3:
 
-st.subheader("🎯 Probabilidad Promedio")
+    st.subheader("🎯 Probabilidad Promedio")
 
-fig = go.Figure(
-    go.Indicator(
+    fig = go.Figure(
+        go.Indicator(
 
-        mode="gauge+number",
+            mode="gauge+number",
 
-        value=prob_promedio,
+            value=prob_promedio,
 
-        number={"suffix":"%"},
+            number={"suffix":"%"},
 
-        title={"text":"Nivel de aprobación"},
+            title={"text":"Nivel de aprobación"},
 
-        gauge={
+            gauge={
 
-            "axis":{"range":[0,100]},
+                "axis":{"range":[0,100]},
 
-            "bar":{"color":"#1565C0"},
+                "bar":{"color":"#1565C0"},
 
-            "steps":[
+                "steps":[
 
-                {
-                    "range":[0,40],
-                    "color":"#D32F2F"
-                },
+                    {
+                        "range":[0,40],
+                        "color":"#D32F2F"
+                    },
 
-                {
-                    "range":[40,70],
-                    "color":"#FBC02D"
-                },
+                    {
+                        "range":[40,70],
+                        "color":"#FBC02D"
+                    },
 
-                {
-                    "range":[70,100],
-                    "color":"#2E7D32"
-                }
+                    {
+                        "range":[70,100],
+                        "color":"#2E7D32"
+                    }
 
-            ]
+                ]
 
-        }
+            }
 
+        )
     )
-)
 
-fig.update_layout(
+    fig.update_layout(
+        height=430
+    )
 
-    height=430
-
-)
-
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
 # =====================================================
 # SCORE CREDITICIO
 # =====================================================
 
-st.markdown("---")
+with col4:
 
-st.subheader("📈 Evolución del Score Crediticio")
+    st.subheader("📈 Evolución del Score Crediticio")
 
-fig = px.line(
-
-    df,
-
-    y="Score",
-
-    markers=True
-
-)
-
-fig.update_traces(
-
-    line=dict(
-
-        color="#1565C0",
-
-        width=3
-
+    fig = px.line(
+        df,
+        y="Score",
+        markers=True
     )
 
-)
+    fig.update_traces(
+        line=dict(
+            color="#1565C0",
+            width=3
+        )
+    )
 
-fig.update_layout(
+    fig.update_layout(
+        height=420,
+        xaxis_title="Solicitudes",
+        yaxis_title="Score"
+    )
 
-    height=420,
-
-    xaxis_title="Solicitudes",
-
-    yaxis_title="Score"
-
-)
-
-st.plotly_chart(
-
-    fig,
-
-    use_container_width=True
-
-)
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
 # =====================================================
 # TABLA
