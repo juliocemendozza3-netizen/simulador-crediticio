@@ -6,6 +6,28 @@ import plotly.graph_objects as go
 from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
+    
+    st.markdown("""
+<style>
+
+.grafico-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+
+    border:1px solid #E5E7EB;
+
+    margin-bottom:15px;
+
+}
+
+</style>
+""", unsafe_allow_html=True)
 
     page_title="Dashboard Banco Mendoza",
 
@@ -14,6 +36,25 @@ st.set_page_config(
     layout="wide"
 
 )
+st.markdown("""
+<style>
+
+div[data-testid="stPlotlyChart"]{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    border:1px solid #E5E7EB;
+
+    box-shadow:0 5px 12px rgba(0,0,0,.12);
+
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 st_autorefresh(
 
@@ -221,6 +262,10 @@ col1, col2 = st.columns(2)
 # =====================================================
 
 with col1:
+    st.markdown(
+    '<div class="grafico-card">',
+    unsafe_allow_html=True
+)
 
     resultados = (
         df["Resultado"]
@@ -262,9 +307,14 @@ with col1:
     )
 
     st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
+    fig,
+    use_container_width=True
+)
+
+st.markdown(
+    "</div>",
+    unsafe_allow_html=True
+)
 
 # =====================================================
 # BARRAS
