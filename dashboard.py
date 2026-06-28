@@ -15,44 +15,11 @@ st.markdown("""
 <style>
 
 div[data-testid="stPlotlyChart"]{
-
     background:white;
-
     border-radius:18px;
-
-    padding:12px;
-
-    box-shadow:0 4px 10px rgba(0,0,0,.10);
-
-    border:1px solid #E5E7EB;
-
-}
-
-</style>
-""", unsafe_allow_html=True)
-
-    page_title="Dashboard Banco Mendoza",
-
-    page_icon="🏦",
-
-    layout="wide"
-
-)
-st.markdown("""
-<style>
-
-div[data-testid="stPlotlyChart"]{
-
-    background:white;
-
-    border-radius:18px;
-
     padding:15px;
-
     border:1px solid #E5E7EB;
-
     box-shadow:0 5px 12px rgba(0,0,0,.12);
-
 }
 
 </style>
