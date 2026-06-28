@@ -4,6 +4,7 @@ import joblib
 import gspread
 
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from google.oauth2.service_account import Credentials
 
 from styles import aplicar_estilos
