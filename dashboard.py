@@ -50,6 +50,11 @@ CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSSZEU4gn9FertCpntuqU
 # =========================
 
 df = pd.read_csv(CSV_URL)
+st.write("Número de registros:", len(df))
+
+st.write("Últimos 5 registros")
+
+st.dataframe(df.tail())
 
 # Convertir columnas numéricas
 columnas_numericas = [
