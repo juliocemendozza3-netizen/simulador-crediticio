@@ -292,7 +292,7 @@ fig.update_layout(
 
     showlegend=False,
 
-    height=380,
+    height=420,
 
     margin=dict(
         l=20,
