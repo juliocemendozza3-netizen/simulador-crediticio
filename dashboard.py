@@ -292,13 +292,13 @@ with graf1:
 
     showlegend=False,
 
-    height=450,
+    height=380,
 
     margin=dict(
-        l=40,
-        r=40,
-        t=60,
-        b=70
+        l=20,
+        r=20,
+        t=40,
+        b=20
     )
 
 )
