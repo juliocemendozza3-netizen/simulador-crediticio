@@ -228,135 +228,67 @@ c8.metric(
 
 st.markdown("---")
 
-# =====================================================
-# TARJETAS KPI
-# =====================================================
+st.markdown("""
+<style>
 
-c1, c2, c3, c4 = st.columns(4)
+/* =====================================================
+   TARJETAS KPI (Solicitudes, Aprobados, etc.)
+   ===================================================== */
 
-with c1:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #1565C0;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">Solicitudes</h5>
-        <h1 style="margin:8px 0;color:#1565C0;">{total_solicitudes}</h1>
-    </div>
-    """, unsafe_allow_html=True)
+div[data-testid="stMetric"]{
 
-with c2:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #2E7D32;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">Aprobados</h5>
-        <h1 style="margin:8px 0;color:#2E7D32;">{aprobados}</h1>
-    </div>
-    """, unsafe_allow_html=True)
+    background:white;
 
-with c3:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #D32F2F;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">Rechazados</h5>
-        <h1 style="margin:8px 0;color:#D32F2F;">{rechazados}</h1>
-    </div>
-    """, unsafe_allow_html=True)
+    border:1px solid #D9D9D9;
 
-with c4:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #F9A825;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">En Revisión</h5>
-        <h1 style="margin:8px 0;color:#F9A825;">{revision}</h1>
-    </div>
-    """, unsafe_allow_html=True)
+    border-radius:18px;
 
-st.markdown("<br>", unsafe_allow_html=True)
+    padding:18px;
 
-c5, c6, c7, c8 = st.columns(4)
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
 
-with c5:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #6A1B9A;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">Monto Total</h5>
-        <h2 style="margin:8px 0;color:#6A1B9A;">${monto_total:,.0f}</h2>
-    </div>
-    """, unsafe_allow_html=True)
+}
 
-with c6:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #00897B;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">Score Promedio</h5>
-        <h1 style="margin:8px 0;color:#00897B;">{score_promedio}</h1>
-    </div>
-    """, unsafe_allow_html=True)
+/* Título del indicador */
 
-with c7:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #EF6C00;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">Probabilidad</h5>
-        <h1 style="margin:8px 0;color:#EF6C00;">{prob_promedio}%</h1>
-    </div>
-    """, unsafe_allow_html=True)
+div[data-testid="stMetricLabel"]{
 
-with c8:
-    st.markdown(f"""
-    <div style="
-        background:white;
-        border-radius:18px;
-        padding:18px;
-        border-left:8px solid #455A64;
-        box-shadow:0 4px 12px rgba(0,0,0,.10);
-        text-align:center;
-    ">
-        <h5 style="margin:0;color:#666;">Capacidad Pago</h5>
-        <h1 style="margin:8px 0;color:#455A64;">{capacidad}%</h1>
-    </div>
-    """, unsafe_allow_html=True)
+    font-weight:600;
+
+    color:#555;
+
+}
+
+/* Valor del indicador */
+
+div[data-testid="stMetricValue"]{
+
+    color:#1565C0;
+
+}
+
+/* =====================================================
+   TARJETAS DE LOS GRÁFICOS
+   ===================================================== */
+
+div[data-testid="stPlotlyChart"]{
+
+    background:white;
+
+    border:1px solid #D9D9D9;
+
+    border-radius:18px;
+
+    padding:15px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
+
+    margin-bottom:20px;
+
+}
+
+</style>
+""", unsafe_allow_html=True)
 
 # =====================================================
 # BARRAS
