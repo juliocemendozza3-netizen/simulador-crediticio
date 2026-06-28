@@ -251,6 +251,114 @@ with graf1:
 
     resultados.columns = ["Resultado", "Cantidad"]
 
+# Colores del gráfico
+
+colores = []
+
+for r in resultados["Resultado"]:
+
+    texto = str(r).upper()
+
+    if "APROBADO" in texto:
+        colores.append("#2E7D32")
+
+    elif "RECHAZADO" in texto:
+        colores.append("#D32F2F")
+
+    else:
+        colores.append("#FBC02D")
+        fig = go.Figure(
+
+    data=[
+
+        go.Pie(
+
+            labels=resultados["Resultado"],
+
+            values=resultados["Cantidad"],
+
+            hole=0.60,
+
+            marker=dict(
+                colors=colores
+            )
+
+        )
+
+    ]
+
+)
+            fig.update_layout(
+
+        title="Resultado de Solicitudes",
+
+        height=380,
+
+        margin=dict(
+            l=20,
+            r=20,
+            t=60,
+            b=20
+        )
+
+    )
+
+    st.plotly_chart(
+
+        fig,
+
+        use_container_width=True
+
+    )
+    
+# =====================================================
+# GRÁFICO DE BARRAS
+# =====================================================
+
+with graf2:
+
+    st.subheader("📊 Estado de las Solicitudes")
+
+    estado = pd.DataFrame({
+
+        "Estado":[
+            "Aprobados",
+            "Rechazados",
+            "En Revisión"
+        ],
+
+        "Cantidad":[
+            aprobados,
+            rechazados,
+            revision
+        ]
+
+    })
+       fig = px.bar(
+
+    estado,
+
+    x="Estado",
+
+    y="Cantidad",
+
+    color="Estado",
+
+    text="Cantidad",
+
+    color_discrete_map={
+
+        "Aprobados":"#2E7D32",
+
+        "Rechazados":"#D32F2F",
+
+        "En Revisión":"#FBC02D"
+
+    }
+
+)
+
+
 # =====================================================
 # TABLA
 # =====================================================
