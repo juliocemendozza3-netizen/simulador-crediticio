@@ -311,7 +311,7 @@ st.plotly_chart(
 
 with graf2:
 
-st.subheader("Estado de las Solicitudes")
+ st.subheader("Estado de las Solicitudes")
 
     estado = pd.DataFrame({
 
