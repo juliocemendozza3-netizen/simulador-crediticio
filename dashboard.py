@@ -241,10 +241,6 @@ col1, col2 = st.columns(2)
 # =====================================================
 
 with col1:
-    st.markdown(
-        '<div class="grafico-card">',
-    unsafe_allow_html=True
-)
 
     resultados = (
         df["Resultado"]
@@ -293,6 +289,10 @@ with col1:
         b=20
     )
 
+)
+    st.plotly_chart(
+    fig,
+    use_container_width=True
 )
 
 # =====================================================
