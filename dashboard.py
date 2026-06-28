@@ -445,13 +445,13 @@ with graf3:
         fig,
         use_container_width=True
     )
-    # =====================================================
+# =====================================================
 # EVOLUCIÓN DEL SCORE CREDITICIO
 # =====================================================
 
 with graf4:
 
-    st.subheader("📈 Evolución del Score Crediticio")
+    st.subheader("Evolución del Score Crediticio")
 
     fig = px.line(
 
