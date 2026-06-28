@@ -251,44 +251,44 @@ with graf1:
 
     resultados.columns = ["Resultado", "Cantidad"]
 
-# Colores del gráfico
+    colores = []
 
-colores = []
+    for r in resultados["Resultado"]:
 
-for r in resultados["Resultado"]:
+        texto = str(r).upper()
 
-    texto = str(r).upper()
+        if "APROBADO" in texto:
+            colores.append("#2E7D32")
 
-    if "APROBADO" in texto:
-        colores.append("#2E7D32")
+        elif "RECHAZADO" in texto:
+            colores.append("#D32F2F")
 
-    elif "RECHAZADO" in texto:
-        colores.append("#D32F2F")
+        else:
+            colores.append("#FBC02D")
 
-    else:
-        colores.append("#FBC02D")
-        fig = go.Figure(
+    fig = go.Figure(
 
-    data=[
+        data=[
 
-        go.Pie(
+            go.Pie(
 
-            labels=resultados["Resultado"],
+                labels=resultados["Resultado"],
 
-            values=resultados["Cantidad"],
+                values=resultados["Cantidad"],
 
-            hole=0.60,
+                hole=0.60,
 
-            marker=dict(
-                colors=colores
+                marker=dict(
+                    colors=colores
+                )
+
             )
 
-        )
+        ]
 
-    ]
+    )
 
-)
-            fig.update_layout(
+    fig.update_layout(
 
         title="Resultado de Solicitudes",
 
@@ -304,11 +304,8 @@ for r in resultados["Resultado"]:
     )
 
     st.plotly_chart(
-
         fig,
-
         use_container_width=True
-
     )
     
 # =====================================================
