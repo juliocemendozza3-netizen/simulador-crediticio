@@ -15,11 +15,21 @@ st.markdown("""
 <style>
 
 div[data-testid="stPlotlyChart"]{
+
     background:white;
+
+    border:1px solid #D9D9D9;
+
     border-radius:18px;
-    padding:15px;
-    border:1px solid #E5E7EB;
-    box-shadow:0 5px 12px rgba(0,0,0,.12);
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    overflow:hidden;
+
+    box-shadow:0 4px 12px rgba(0,0,0,.10);
+
 }
 
 </style>
@@ -272,7 +282,7 @@ with col1:
 
     fig.update_layout(
         title="Resultado de Solicitudes",
-        height=430
+        height=330
     )
 
     st.plotly_chart(
@@ -339,7 +349,7 @@ with col2:
 
         showlegend=False,
 
-        height=430
+        height=330
 
     )
 
@@ -444,7 +454,7 @@ with col4:
 )
 
     fig.update_layout(
-        height=420,
+        height=330,
         xaxis_title="Solicitudes",
         yaxis_title="Score"
     )
