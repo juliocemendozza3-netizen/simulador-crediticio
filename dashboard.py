@@ -444,6 +444,15 @@ st.markdown("---")
 st.subheader("📋 Últimas Solicitudes")
 
 st.dataframe(
-    df,
+
+    df.sort_values(
+
+        by="Fecha",
+
+        ascending=False
+
+    ),
+
     use_container_width=True
+
 )
