@@ -239,7 +239,7 @@ graf1, graf2 = st.columns(2)
 
 with graf1:
 
-    st.subheader("Resultado de Solicitudes")
+
 
     resultados = (
         df["Resultado"]
@@ -311,7 +311,7 @@ st.plotly_chart(
 
 with graf2:
 
-    st.subheader("📊 Estado de las Solicitudes")
+    st.subheader("Estado de las Solicitudes")
 
     estado = pd.DataFrame({
 
