@@ -234,7 +234,7 @@ st.markdown("---")
 
 st.subheader("Indicadores ")
 
-col1, col2 = st.columns(3)
+col1, col2 = st.columns(2)
 
 # =====================================================
 # DONUT
