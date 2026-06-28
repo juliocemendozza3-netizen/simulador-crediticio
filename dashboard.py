@@ -1,16 +1,26 @@
 import streamlit as st
 import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+
 from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
+
     page_title="Dashboard Banco Mendoza",
+
+    page_icon="🏦",
+
     layout="wide"
+
 )
 
-# Actualizar automáticamente cada 10 segundos
 st_autorefresh(
+
     interval=10000,
+
     key="dashboard_refresh"
+
 )
 
 CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSSZEU4gn9FertCpntuqUc10Qij3o30n4cz1iPjZ6YwTGFibiKWNfIbjKxuEb7QnlqRoY7_643-yd0Q/pub?gid=0&single=true&output=csv"
@@ -23,23 +33,44 @@ df = pd.read_csv(CSV_URL)
 
 # Convertir columnas numéricas
 columnas_numericas = [
+
     "Edad",
+
     "Ingresos",
+
     "Score",
+
     "Valor_Credito",
+
     "Plazo",
+
     "Probabilidad",
+
     "Capacidad_Pago"
+
 ]
 
 for col in columnas_numericas:
+
     if col in df.columns:
+
         df[col] = (
+
             df[col]
+
             .astype(str)
+
             .str.replace(",", ".", regex=False)
+
         )
-        df[col] = pd.to_numeric(df[col], errors="coerce")
+
+        df[col] = pd.to_numeric(
+
+            df[col],
+
+            errors="coerce"
+
+        )
 
 # =========================
 # INDICADORES
@@ -48,32 +79,72 @@ for col in columnas_numericas:
 total_solicitudes = len(df)
 
 aprobados = len(
-    df[df["Resultado"].astype(str).str.contains("APROBADO", na=False)]
+
+    df[
+
+        df["Resultado"]
+
+        .astype(str)
+
+        .str.contains("APROBADO", na=False)
+
+    ]
+
 )
 
 rechazados = len(
-    df[df["Resultado"].astype(str).str.contains("RECHAZADO", na=False)]
+
+    df[
+
+        df["Resultado"]
+
+        .astype(str)
+
+        .str.contains("RECHAZADO", na=False)
+
+    ]
+
 )
 
-monto_total = df["Valor_Credito"].fillna(0).sum()
+revision = len(
 
-score_promedio = round(
-    df["Score"].fillna(0).mean(),
-    0
+    df[
+
+        df["Resultado"]
+
+        .astype(str)
+
+        .str.contains("REVIS", na=False)
+
+    ]
+
 )
 
-prob_promedio = round(
-    df["Probabilidad"].fillna(0).mean(),
-    2
+monto_total = df["Valor_Credito"].sum()
+
+score_promedio = round(df["Score"].mean(),0)
+
+prob_promedio = round(df["Probabilidad"].mean(),1)
+
+capacidad = round(df["Capacidad_Pago"].mean(),1)
+
+# =====================================================
+# ENCABEZADO
+# =====================================================
+
+st.title("🏦 Banco Mendoza")
+
+st.caption(
+    "Dashboard Ejecutivo • Actualización automática cada 10 segundos"
 )
 
-# =========================
-# DASHBOARD
-# =========================
+st.markdown("---")
 
-st.title("📊 Dashboard Crediticio Banco Mendoza")
+# =====================================================
+# TARJETAS KPI
+# =====================================================
 
-c1, c2, c3, c4, c5 = st.columns(5)
+c1, c2, c3, c4 = st.columns(4)
 
 c1.metric(
     "Solicitudes",
@@ -91,33 +162,271 @@ c3.metric(
 )
 
 c4.metric(
+    "En Revisión",
+    revision
+)
+
+c5, c6, c7, c8 = st.columns(4)
+
+c5.metric(
     "Monto Total",
     f"${monto_total:,.0f}"
 )
 
-c5.metric(
-    "Probabilidad Promedio",
+c6.metric(
+    "Score Promedio",
+    score_promedio
+)
+
+c7.metric(
+    "Probabilidad",
     f"{prob_promedio}%"
+)
+
+c8.metric(
+    "Capacidad Pago",
+    f"{capacidad}%"
 )
 
 st.markdown("---")
 
+# =====================================================
+# INDICADORES EJECUTIVOS
+# =====================================================
+
+st.subheader("📊 Indicadores Ejecutivos")
+
 col1, col2 = st.columns(2)
 
+# =====================================================
+# DONUT
+# =====================================================
+
 with col1:
-    st.subheader("Distribución de Resultados")
-    st.bar_chart(df["Resultado"].value_counts())
+
+    resultados = (
+        df["Resultado"]
+        .value_counts()
+        .reset_index()
+    )
+
+    resultados.columns = ["Resultado", "Cantidad"]
+
+    colores = []
+
+    for r in resultados["Resultado"]:
+
+        texto = str(r).upper()
+
+        if "APROBADO" in texto:
+            colores.append("#2E7D32")
+
+        elif "RECHAZADO" in texto:
+            colores.append("#D32F2F")
+
+        else:
+            colores.append("#FBC02D")
+
+    fig = go.Figure(
+        data=[
+            go.Pie(
+                labels=resultados["Resultado"],
+                values=resultados["Cantidad"],
+                hole=0.60,
+                marker=dict(colors=colores)
+            )
+        ]
+    )
+
+    fig.update_layout(
+        title="Resultado de Solicitudes",
+        height=430
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+
+# =====================================================
+# BARRAS
+# =====================================================
 
 with col2:
-    st.subheader("Score Crediticio")
-    st.line_chart(df["Score"])
+
+    estado = pd.DataFrame({
+
+        "Estado":[
+            "Aprobados",
+            "Rechazados",
+            "Revisión"
+        ],
+
+        "Cantidad":[
+            aprobados,
+            rechazados,
+            revision
+        ]
+
+    })
+
+    fig = px.bar(
+
+        estado,
+
+        x="Estado",
+
+        y="Cantidad",
+
+        color="Estado",
+
+        text="Cantidad",
+
+        color_discrete_map={
+
+            "Aprobados":"#2E7D32",
+
+            "Rechazados":"#D32F2F",
+
+            "Revisión":"#FBC02D"
+
+        }
+
+    )
+
+    fig.update_traces(
+        textposition="outside"
+    )
+
+    fig.update_layout(
+
+        showlegend=False,
+
+        height=430
+
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+    # =====================================================
+# VELOCÍMETRO
+# =====================================================
 
 st.markdown("---")
 
-st.subheader("Últimas Solicitudes")
+st.subheader("🎯 Probabilidad Promedio")
+
+fig = go.Figure(
+    go.Indicator(
+
+        mode="gauge+number",
+
+        value=prob_promedio,
+
+        number={"suffix":"%"},
+
+        title={"text":"Nivel de aprobación"},
+
+        gauge={
+
+            "axis":{"range":[0,100]},
+
+            "bar":{"color":"#1565C0"},
+
+            "steps":[
+
+                {
+                    "range":[0,40],
+                    "color":"#D32F2F"
+                },
+
+                {
+                    "range":[40,70],
+                    "color":"#FBC02D"
+                },
+
+                {
+                    "range":[70,100],
+                    "color":"#2E7D32"
+                }
+
+            ]
+
+        }
+
+    )
+)
+
+fig.update_layout(
+
+    height=430
+
+)
+
+st.plotly_chart(
+    fig,
+    use_container_width=True
+)
+
+# =====================================================
+# SCORE CREDITICIO
+# =====================================================
+
+st.markdown("---")
+
+st.subheader("📈 Evolución del Score Crediticio")
+
+fig = px.line(
+
+    df,
+
+    y="Score",
+
+    markers=True
+
+)
+
+fig.update_traces(
+
+    line=dict(
+
+        color="#1565C0",
+
+        width=3
+
+    )
+
+)
+
+fig.update_layout(
+
+    height=420,
+
+    xaxis_title="Solicitudes",
+
+    yaxis_title="Score"
+
+)
+
+st.plotly_chart(
+
+    fig,
+
+    use_container_width=True
+
+)
+
+# =====================================================
+# TABLA
+# =====================================================
+
+st.markdown("---")
+
+st.subheader("📋 Últimas Solicitudes")
 
 st.dataframe(
     df,
     use_container_width=True
 )
-
