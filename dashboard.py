@@ -231,8 +231,6 @@ st.markdown("---")
 # INDICADORES EJECUTIVOS
 # =====================================================
 
-st.subheader("📊 Indicadores Ejecutivos")
-
 graf1, graf2 = st.columns(2)
 
 # =====================================================
@@ -241,7 +239,7 @@ graf1, graf2 = st.columns(2)
 
 with graf1:
 
-    st.subheader("🍩 Resultado de Solicitudes")
+    st.subheader("Resultado de Solicitudes")
 
     resultados = (
         df["Resultado"]
@@ -394,7 +392,7 @@ graf3, graf4 = st.columns(2)
 
 with graf3:
 
-    st.subheader("🎯 Probabilidad Promedio")
+    st.subheader("Probabilidad Promedio")
 
     fig = go.Figure(
 
