@@ -274,19 +274,21 @@ if st.button("✅ Evaluar Crédito"):
     # =========================
 
     sheet.append_row([
-        datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        edad,
-        ingresos,
-        score,
-        valor_credito,
-        plazo,
-        prob,
-        round(capacidad_pago, 2),
-        decision_final,
-        motivo
-    ])
+        datetime.now(
+        ZoneInfo("America/Bogota")
+    ).strftime("%Y-%m-%d %H:%M:%S"),
+    edad,
+    ingresos,
+    score,
+    valor_credito,
+    plazo,
+    prob,
+    round(capacidad_pago, 2),
+    decision_final,
+    motivo
+])
 
-    st.success("✅ Solicitud guardada en Google Sheets")
+st.success("✅ Solicitud guardada en Google Sheets")
 
 # =========================
 # NUEVA CONSULTA
