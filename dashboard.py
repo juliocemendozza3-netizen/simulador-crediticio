@@ -298,7 +298,7 @@ fig.update_layout(
         l=20,
         r=20,
         t=40,
-        b=20
+        b=40
     )
 
 )
