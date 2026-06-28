@@ -232,9 +232,9 @@ st.markdown("---")
 # INDICADORES EJECUTIVOS
 # =====================================================
 
-st.subheader("Indicadores Ejecutivos")
+st.subheader("Indicadores ")
 
-col1, col2 = st.columns(2)
+col1, col2 = st.columns(3)
 
 # =====================================================
 # DONUT
