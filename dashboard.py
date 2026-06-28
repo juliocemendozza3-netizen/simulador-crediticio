@@ -387,6 +387,119 @@ with graf2:
 graf3, graf4 = st.columns(2)
 
 # =====================================================
+# VELOCÍMETRO
+# =====================================================
+
+with graf3:
+
+    st.subheader("🎯 Probabilidad Promedio")
+
+    fig = go.Figure(
+
+        go.Indicator(
+
+            mode="gauge+number",
+
+            value=prob_promedio,
+
+            number={"suffix":"%"},
+
+            title={"text":"Nivel de aprobación"},
+
+            gauge={
+
+                "axis":{"range":[0,100]},
+
+                "bar":{"color":"#1565C0"},
+
+                "steps":[
+
+                    {
+                        "range":[0,40],
+                        "color":"#D32F2F"
+                    },
+
+                    {
+                        "range":[40,70],
+                        "color":"#FBC02D"
+                    },
+
+                    {
+                        "range":[70,100],
+                        "color":"#2E7D32"
+                    }
+
+                ]
+
+            }
+
+        )
+
+    )
+
+    fig.update_layout(
+        height=380
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+    # =====================================================
+# EVOLUCIÓN DEL SCORE CREDITICIO
+# =====================================================
+
+with graf4:
+
+    st.subheader("📈 Evolución del Score Crediticio")
+
+    fig = px.line(
+
+        df,
+
+        y="Score",
+
+        markers=True
+
+    )
+
+    fig.update_traces(
+
+        line=dict(
+            color="#1565C0",
+            width=3
+        ),
+
+        marker=dict(
+            size=8
+        )
+
+    )
+
+    fig.update_layout(
+
+        height=380,
+
+        xaxis_title="Solicitudes",
+
+        yaxis_title="Score",
+
+        margin=dict(
+            l=20,
+            r=20,
+            t=40,
+            b=20
+        )
+
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
+    
+
+# =====================================================
 # TABLA
 # =====================================================
 
