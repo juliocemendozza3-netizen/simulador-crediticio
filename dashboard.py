@@ -362,24 +362,26 @@ with graf2:
 
     fig.update_layout(
 
-        showlegend=False,
+    showlegend=False,
 
-        height=380,
+    height=380,
 
-        margin=dict(
-            l=20,
-            r=20,
-            t=40,
-            b=20
-        )
+    margin=dict(
+        l=40,
+        r=20,
+        t=20,
+        b=40
+    ),
 
+    yaxis=dict(
+        automargin=True
+    ),
+
+    xaxis=dict(
+        automargin=True
     )
 
-    st.plotly_chart(
-        fig,
-        use_container_width=True
-    )
-
+)
 # =====================================================
 # SEGUNDA FILA DE GRÁFICOS
 # =====================================================
