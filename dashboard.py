@@ -229,71 +229,134 @@ c8.metric(
 st.markdown("---")
 
 # =====================================================
-# INDICADORES EJECUTIVOS
+# TARJETAS KPI
 # =====================================================
 
-st.subheader("Indicadores ")
+c1, c2, c3, c4 = st.columns(4)
 
-col1, col2 = st.columns(2)
+with c1:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #1565C0;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">Solicitudes</h5>
+        <h1 style="margin:8px 0;color:#1565C0;">{total_solicitudes}</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
-# =====================================================
-# DONUT
-# =====================================================
+with c2:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #2E7D32;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">Aprobados</h5>
+        <h1 style="margin:8px 0;color:#2E7D32;">{aprobados}</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
-with col1:
+with c3:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #D32F2F;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">Rechazados</h5>
+        <h1 style="margin:8px 0;color:#D32F2F;">{rechazados}</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
-    resultados = (
-        df["Resultado"]
-        .value_counts()
-        .reset_index()
-    )
+with c4:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #F9A825;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">En Revisión</h5>
+        <h1 style="margin:8px 0;color:#F9A825;">{revision}</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
-    resultados.columns = ["Resultado", "Cantidad"]
+st.markdown("<br>", unsafe_allow_html=True)
 
-    colores = []
+c5, c6, c7, c8 = st.columns(4)
 
-    for r in resultados["Resultado"]:
+with c5:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #6A1B9A;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">Monto Total</h5>
+        <h2 style="margin:8px 0;color:#6A1B9A;">${monto_total:,.0f}</h2>
+    </div>
+    """, unsafe_allow_html=True)
 
-        texto = str(r).upper()
+with c6:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #00897B;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">Score Promedio</h5>
+        <h1 style="margin:8px 0;color:#00897B;">{score_promedio}</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
-        if "APROBADO" in texto:
-            colores.append("#2E7D32")
+with c7:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #EF6C00;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">Probabilidad</h5>
+        <h1 style="margin:8px 0;color:#EF6C00;">{prob_promedio}%</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
-        elif "RECHAZADO" in texto:
-            colores.append("#D32F2F")
-
-        else:
-            colores.append("#FBC02D")
-
-    fig = go.Figure(
-        data=[
-            go.Pie(
-                labels=resultados["Resultado"],
-                values=resultados["Cantidad"],
-                hole=0.60,
-                marker=dict(colors=colores)
-            )
-        ]
-    )
-
-    fig.update_layout(
-
-    showlegend=False,
-
-    height=380,
-
-    margin=dict(
-        l=20,
-        r=20,
-        t=60,
-        b=20
-    )
-
-)
-    st.plotly_chart(
-    fig,
-    use_container_width=True
-)
+with c8:
+    st.markdown(f"""
+    <div style="
+        background:white;
+        border-radius:18px;
+        padding:18px;
+        border-left:8px solid #455A64;
+        box-shadow:0 4px 12px rgba(0,0,0,.10);
+        text-align:center;
+    ">
+        <h5 style="margin:0;color:#666;">Capacidad Pago</h5>
+        <h1 style="margin:8px 0;color:#455A64;">{capacidad}%</h1>
+    </div>
+    """, unsafe_allow_html=True)
 
 # =====================================================
 # BARRAS
